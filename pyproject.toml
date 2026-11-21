@@ -1,0 +1,38 @@
+[project]
+name = "lircbot"
+version = "2.0.0"
+description = "A lightweight threaded IRC bot framework on top of pydle"
+readme = "readme.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pydle[sasl]>=1.2,<2",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lircbot"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pytest-timeout>=2.3",
+    "ruff>=0.8",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+timeout = 60
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "SIM", "PL", "RUF", "S", "T20"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "PLR2004", "PLR0913", "SLF001"]
+"src/lircbot/examplebot.py" = ["T201"]
