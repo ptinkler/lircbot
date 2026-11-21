@@ -17,7 +17,7 @@ jobs:
         python: ["3.10", "3.11", "3.12", "3.13", "3.14"]
     steps:
       - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
+      - uses: astral-sh/setup-uv@v7
       - run: uv sync --frozen --python ${{ matrix.python }}
       - run: uv run --frozen pytest
       - run: uv run --frozen ruff check .
